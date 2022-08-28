@@ -4,7 +4,7 @@ import Button from "../ui/button";
 import DateIcon from "../icons/date-icon";
 import AddressIcon from "../icons/address-icon";
 import ArrowRightIcon from "../icons/arrow-right-icon";
-import Card from "../ui/card"
+import Card from "../ui/card";
 
 function VideoItem(props) {
   const { id, url, title, featured, is_shorts, channel } = props;
@@ -18,18 +18,19 @@ function VideoItem(props) {
 
   return (
     <li className={classes.item}>
-      <Card>
-        <div>
-          <iframe
-            title="YouTube video player"
-            src={props.url}
-            className={classes.image}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+      <iframe
+        title="YouTube video player"
+        src={props.url}
+        className={classes.image}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+      <div className={classes.content}>
+        <div className={classes.summary}>
+          <h2>{props.title}</h2>
         </div>
-      </Card>
+      </div>
     </li>
   );
 }
