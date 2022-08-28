@@ -1,13 +1,20 @@
 import { getAllVideo, getFeaturedVideo } from "../helpers/api-util";
 import VideoList from "../components/video/video-list";
 import { useState, useEffect } from "react";
+import config from "../helpers/config";
 
 function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedVideo, setLoadedVideo] = useState([]);
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://13.125.206.79:8000/videos/")
+    fetch("https://gidleyoutubecollections.ml/api/videos/", {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + config['api_key']
+      },
+    })
       .then((response) => {
         return response.json();
       })
@@ -18,14 +25,11 @@ function HomePage() {
       });
   }, []);
 
-  if (isLoading) {
-    return (
-      <section>
-        <p>Loading...</p>
-      </section>
-    );
+
+  if (!loadedVideo) {
+    return <p>Loading...</p>;
   }
-  
+
   return (
     <div>
       <VideoList video={loadedVideo}></VideoList>
