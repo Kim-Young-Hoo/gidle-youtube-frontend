@@ -1,5 +1,5 @@
-import { getAllVideo, getFeaturedVideo } from "../helpers/api-util";
-import VideoList from "../components/video/video-list";
+// import { getAllVideo, getFeaturedVideo } from "../helpers/api-util";
+import VideoList from "../../components/video/video-list";
 import { useState, useEffect } from "react";
 
 function VideoPage() {

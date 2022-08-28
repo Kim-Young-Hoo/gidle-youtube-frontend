@@ -1,14 +1,17 @@
-import { getAllVideo, getFeaturedVideo } from "../../helpers/api-util";
+// import { getAllVideo, getFeaturedVideo } from "../../helpers/api-util";
 import VideoList from "../../components/video/video-list";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 function SongFilterPage() {
-  const router = useRouter();
-  const songId = router.query.songId;
 
   const [isLoading, setIsLoading] = useState(true);
   const [loadedVideo, setLoadedVideo] = useState([]);
+
+  const router = useRouter();
+  const songId = router.query.songId;
+
+
   useEffect(() => {
     setIsLoading(true);
     fetch("https://gidleyoutubecollections.ml/api/videos/" + songId, {
@@ -24,7 +27,6 @@ function SongFilterPage() {
       .then((data) => {
         setIsLoading(false);
         setLoadedVideo(data.data);
-        console.log(data.data);
       });
   }, []);
 
