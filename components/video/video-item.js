@@ -29,6 +29,7 @@ function VideoItem(props) {
       <div className={classes.content}>
         <div className={classes.summary}>
           <h2>{props.title}</h2>
+          
         </div>
       </div>
     </li>

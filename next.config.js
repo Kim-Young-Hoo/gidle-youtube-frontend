@@ -4,10 +4,18 @@ const nextConfig = {
       return [
         {
           source: '/',
-          destination: `http://13.125.206.79:8000/`,
+          destination: `https://gidleyoutubecollections.ml:8000/`,
         },
       ];
     },
   };
   
   module.exports = nextConfig;
+
+  module.exports = {
+    reactStrictMode: true,
+    env: {
+      API_KEY: process.env.API_KEY,
+    }
+  }
+  

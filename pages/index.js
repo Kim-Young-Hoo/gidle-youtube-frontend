@@ -1,9 +1,9 @@
 import { getAllVideo, getFeaturedVideo } from "../helpers/api-util";
 import VideoList from "../components/video/video-list";
 import { useState, useEffect } from "react";
-import config from "../helpers/config";
 
 function HomePage() {
+  console.log('Bearer ' + `${process.env.API_KEY}`)
   const [isLoading, setIsLoading] = useState(true);
   const [loadedVideo, setLoadedVideo] = useState([]);
   useEffect(() => {
@@ -12,7 +12,7 @@ function HomePage() {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + config['api_key']
+        'Authorization': 'Bearer ' + `${process.env.API_KEY}`
       },
     })
       .then((response) => {
