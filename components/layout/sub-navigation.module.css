@@ -1,0 +1,75 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 10%;
+  height: 4rem;
+  background-color: #6f3167;
+}
+
+
+.logo {
+  font-size: 1.5rem;
+  color: white;
+  font-family: "Fira", sans-serif;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #cf98df;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #c8c4c7;
+}
+
+.navigation ul {
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navigation li {
+  padding: 15px;
+  float: left;
+  width: auto;
+}
+
+/* .navigation ul li a {
+  display: block;
+  padding: 5px;
+  color: #000000;
+  font-size: 14px;
+  text-decoration: none;
+} */
+
+/* .menu ul:after {
+  display: block;
+  clear: both;
+} */
+
+/* .menu li {
+  float: left;
+  width: auto;
+} */
+
+.navigation a {
+  text-decoration: none;
+  color: #f1e9f1;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .navigation a {
+    font-weight: 900;
+    text-decoration: underline;
+    font-size: 1.6rem;
+  }
+}

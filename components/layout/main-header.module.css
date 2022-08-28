@@ -1,42 +1,42 @@
 .header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 1rem 10%;
-    height: 5rem;
-    background-color: #4c0843;
-  }
-  
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 10%;
+  height: 6rem;
+  background-color: #4c0843;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: rgb(255, 255, 255);
+  font-family: "Fira", sans-serif;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #cf98df;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
   .logo {
-    font-size: 1.5rem;
-    color: white;
-    font-family: 'Fira', sans-serif;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #cf98df;
+    font-weight: bolder;
+    font-size: 3rem;
   }
-  
-  .logo a {
-    text-decoration: none;
-    color: #c8c4c7;
-  }
-  
+
   .navigation a {
-    text-decoration: none;
-    color: #f1e9f1;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
-  
-  @media (min-width: 768px) {
-    .logo {
-      font-size: 2.5rem;
-    }
-  
-    .navigation a {
-      font-size: 1.5rem;
-    }
-  }
-  
+}

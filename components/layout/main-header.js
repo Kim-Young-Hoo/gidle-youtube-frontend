@@ -10,8 +10,9 @@ function MainHeader() {
       <nav className={classes.navigation}>
         <ul>
           <li>
-            <Link href="/video">Browse All Events</Link>
+            <Link href="/videos">영상 추가하기</Link>
           </li>
+
         </ul>
       </nav>
     </header>
