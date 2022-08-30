@@ -5,7 +5,6 @@ function SubNavigation(props) {
   const data = props.data;
 
   return (
-    <header className={classes.header}>
       <nav className={classes.navigation}>
         <ul>
           {data.map((song) => (
@@ -15,7 +14,6 @@ function SubNavigation(props) {
           ))}
         </ul>
       </nav>
-    </header>
   );
 }
 

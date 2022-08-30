@@ -1,60 +1,24 @@
-.header {
+
+.navigation {
+  display: flex;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  height: auto;
+  background-color: rgb(94, 13, 139, 0.7);
   align-items: center;
-  padding: 1rem 10%;
-  height: 4rem;
-  background-color: #6f3167;
-}
-
-
-.logo {
-  font-size: 1.5rem;
-  color: white;
-  font-family: "Fira", sans-serif;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #cf98df;
-}
-
-.logo a {
-  text-decoration: none;
-  color: #c8c4c7;
+  padding: 0.05rem 6%;
 }
 
 .navigation ul {
-
   margin: 0;
-  padding: 0;
-  list-style: none;
+  display: inline-block;
 }
 
-.navigation li {
-  padding: 15px;
+.navigation ul li {
   float: left;
-  width: auto;
-}
-
-/* .navigation ul li a {
-  display: block;
   padding: 5px;
-  color: #000000;
-  font-size: 14px;
-  text-decoration: none;
-} */
-
-/* .menu ul:after {
-  display: block;
-  clear: both;
-} */
-
-/* .menu li {
-  float: left;
+  margin: 15px;
   width: auto;
-} */
+}
 
 .navigation a {
   text-decoration: none;
@@ -62,11 +26,12 @@
   font-size: 1rem;
 }
 
-@media (min-width: 768px) {
-  .logo {
-    font-size: 2.5rem;
-  }
+.navigation a:hover {
+  color: rgb(113, 167, 213);
+}
 
+
+@media (min-width: 768px) {
   .navigation a {
     font-weight: 900;
     text-decoration: underline;

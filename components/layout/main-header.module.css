@@ -3,9 +3,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 10%;
+  padding: 3rem 6%;
   height: 6rem;
-  background-color: #4c0843;
+  background-color: rgb(94, 13, 139, 1.0);
 }
 
 .logo {
@@ -28,6 +28,10 @@
   text-decoration: none;
   color: #ffffff;
   font-size: 1rem;
+}
+
+.header a:hover {
+  color: rgb(113, 167, 213);
 }
 
 @media (min-width: 768px) {

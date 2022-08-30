@@ -7,13 +7,12 @@ import ArrowRightIcon from "../icons/arrow-right-icon";
 import Card from "../ui/card";
 
 function VideoItem(props) {
-  const { id, url, title, featured, is_shorts, channel } = props;
-  // const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
-  //   day: "numeric",
-  //   month: "long",
-  //   year: "numeric",
-  // });
-  // const formattedAddress = location.replace(", ", "\n");
+  const { id, url, title, featured, is_shorts, channel, upload_date } = props;
+  const humanReadableDate = new Date(upload_date).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
   const exploreLink = `/video/${id}`;
 
   return (
@@ -29,7 +28,10 @@ function VideoItem(props) {
       <div className={classes.content}>
         <div className={classes.summary}>
           <h2>{props.title}</h2>
-          
+          <div className={classes.date}>
+            <DateIcon />
+            <time>{humanReadableDate}</time>
+          </div>
         </div>
       </div>
     </li>
