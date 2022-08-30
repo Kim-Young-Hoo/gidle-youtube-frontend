@@ -8,20 +8,27 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 function HomePage(props) {
-  const [data, setData] = useState([props.data]);
+  const [data, setData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+  const [pageNumber, setPageNumber] = useState(0);
   const router = useRouter();
   const observer = useRef();
 
-  useEffect(() => {
-    if (props.pageNumber === 0) {
-      setData([props.data]);
-    }
-  });
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
 
   useEffect(() => {
+
     if (data) {
-      setData(props.data);
+      if (props.pageNumber === 0) {
+        setData([]);
+      }
+
+      setData((prevVideos) => {
+        return [...new Set([...prevVideos, ...props.data])];
+      });
       if (parseInt(props.pageNumber, 10) < parseInt(props.lastPageNumber, 10)) {
         setHasMore(true);
       } else {
@@ -30,21 +37,17 @@ function HomePage(props) {
     }
   }, [props.data]);
 
-  if (!data) {
-    return <p>Loading...</p>;
-  }
 
   const handlePagination = (pageNumber) => {
-    // const path = router.pathname;
+    const path = router.pathname;
     const query = router.query;
-    console.log(pageNumber);
     query.pageNumber = parseInt(pageNumber, 10) + 1;
     router.push(
       {
-        // pathname: path,
+        pathname: "/",
         query: query,
       },
-      undefined,
+      "/",
       { scroll: false }
     );
   };
@@ -63,7 +66,7 @@ function HomePage(props) {
   );
 
   return (
-    <ul>
+    <ul className="video-ul">
       {data.map((video, index) => {
         return (
           <div
@@ -88,20 +91,21 @@ function HomePage(props) {
 }
 
 export async function getServerSideProps(query) {
+  // console.log(query)
   const pageNumber = query.query.pageNumber || 0;
   console.log(pageNumber);
 
   const response = await axios({
     url: "https://gidleyoutubecollections.ml/api/videos/",
     method: "GET",
-    params: { page_number: pageNumber },
+    params: { page_number: pageNumber, limit: 12 },
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + `${process.env.API_KEY}`,
     },
   });
   const data = await response.data;
-  // console.log(data);
+  console.log(data);
 
   return {
     props: {

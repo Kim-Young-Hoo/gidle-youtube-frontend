@@ -13,21 +13,24 @@ function VideoItem(props) {
     month: "long",
     year: "numeric",
   });
-  const exploreLink = `/video/${id}`;
 
   return (
     <li className={classes.item}>
-      <iframe
-        title="YouTube video player"
-        src={props.url}
-        className={classes.image}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
+      <div className={classes.video}>
+        <iframe
+          title="YouTube video player"
+          src={props.url}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          loading="lazy"
+        ></iframe>
+      </div>
       <div className={classes.content}>
         <div className={classes.summary}>
-          <h2>{props.title}</h2>
+          <div className={classes.title}>
+            <h2>{props.title}</h2>
+          </div>
           <div className={classes.date}>
             <DateIcon />
             <time>{humanReadableDate}</time>

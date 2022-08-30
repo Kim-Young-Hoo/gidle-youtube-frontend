@@ -38,3 +38,12 @@ ul {
   max-width: 130rem;
   margin: 5rem auto;
 }
+
+.video-ul {
+  width: 100%;
+  /* max-width: 80rem; */
+  /* margin: 2rem; */
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
