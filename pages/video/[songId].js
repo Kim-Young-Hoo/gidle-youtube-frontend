@@ -78,7 +78,7 @@ function SongFilterPage(props) {
               title={video.title}
               featured={video.featured}
               is_shorts={video.is_shorts}
-              channel={video.channel}
+              channel_name={video.channel_name}
               upload_date={video.upload_date}
             />
           </div>
@@ -95,7 +95,7 @@ export async function getServerSideProps(query) {
   const response = await axios({
     url: "https://gidleyoutubecollections.ml/api/videos/" + songId,
     method: "GET",
-    params: { page_number: pageNumber },
+    params: { page_number: pageNumber, limit: 6 },
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + `${process.env.API_KEY}`,

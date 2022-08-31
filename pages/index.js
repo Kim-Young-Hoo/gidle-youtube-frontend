@@ -3,8 +3,7 @@ import { getAllVideo, getFeaturedVideo } from "../helpers/api-util";
 import VideoItem from "../components/video/video-item";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
-
-// import useVideoSearch from "../helpers/use-video-search";
+import { getCookies, setCookies, removeCookies } from "cookies-next";
 import axios from "axios";
 
 function HomePage(props) {
@@ -13,14 +12,13 @@ function HomePage(props) {
   const [pageNumber, setPageNumber] = useState(0);
   const router = useRouter();
   const observer = useRef();
+  console.log(getCookies().loggedIn)
 
   if (!data) {
     return <p>Loading...</p>;
   }
 
-
   useEffect(() => {
-
     if (data) {
       if (props.pageNumber === 0) {
         setData([]);
@@ -36,7 +34,6 @@ function HomePage(props) {
       }
     }
   }, [props.data]);
-
 
   const handlePagination = (pageNumber) => {
     const path = router.pathname;
@@ -80,7 +77,7 @@ function HomePage(props) {
               title={video.title}
               featured={video.featured}
               is_shorts={video.is_shorts}
-              channel={video.channel}
+              channel_name={video.channel_name}
               upload_date={video.upload_date}
             />
           </div>
@@ -93,19 +90,19 @@ function HomePage(props) {
 export async function getServerSideProps(query) {
   // console.log(query)
   const pageNumber = query.query.pageNumber || 0;
-  console.log(pageNumber);
+  // console.log(pageNumber);
 
   const response = await axios({
     url: "https://gidleyoutubecollections.ml/api/videos/",
     method: "GET",
-    params: { page_number: pageNumber, limit: 12 },
+    params: { page_number: pageNumber, limit: 6 },
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + `${process.env.API_KEY}`,
     },
   });
   const data = await response.data;
-  console.log(data);
+  // console.log(data);
 
   return {
     props: {

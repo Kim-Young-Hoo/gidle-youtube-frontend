@@ -16,6 +16,8 @@ const nextConfig = {
     reactStrictMode: true,
     env: {
       API_KEY: process.env.API_KEY,
+      // ADMIN_ID: process.env.ADMIN_ID,
+      // ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
     }
   }
   

@@ -4,6 +4,7 @@ import SubNavigation from "./sub-navigation";
 
 function Layout(props) {
   const songFilters = [
+    { name: "데뷔 전", id: 13},
     { name: "LATATA", id: 1 },
     { name: "한(一)", id: 2 },
     { name: "Senroita", id: 3 },
