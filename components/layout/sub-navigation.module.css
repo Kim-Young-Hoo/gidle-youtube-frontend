@@ -9,21 +9,21 @@
 }
 
 .navigation ul {
-  margin: 0;
+  margin-left: -1rem;
   display: inline-block;
 }
 
 .navigation ul li {
   float: left;
-  padding: 5px;
-  margin: 15px;
+  padding: 3px;
+  /* margin: 15px; */
   width: auto;
 }
 
 .navigation a {
   text-decoration: none;
   color: #f1e9f1;
-  font-size: 1rem;
+  font-size: 0.5rem;
 }
 
 .navigation a:hover {
@@ -31,10 +31,24 @@
 }
 
 
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
   .navigation a {
     font-weight: 900;
     text-decoration: underline;
     font-size: 1.6rem;
   }
-} */
+
+  .navigation ul li {
+    float: left;
+    padding: 3px;
+    margin: 15px;
+    width: auto;
+  }
+
+  .navigation ul {
+    margin: 0rem;
+    display: inline-block;
+  }
+  
+  
+}

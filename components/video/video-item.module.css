@@ -3,13 +3,12 @@
   border-radius: 8px;
   /* overflow: hidden; */
   background-color: rgba(51, 7, 75, 0.332);
-  margin: 3rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   height: 600px;
   width: 800px;
-  overflow : auto;
+  overflow: auto;
 }
 
 .item .video {
@@ -17,12 +16,10 @@
   width: 100%;
 }
 
-
 .item .visible {
   background-color: #614c5c;
   height: 50px;
 }
-
 
 .item .video iframe {
   position: relative;
@@ -48,7 +45,7 @@
 
 .content h2 {
   margin: 0.5rem 0;
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
 
 .title {
@@ -56,13 +53,10 @@
   width: 100%;
   /* white-space: nowrap; */
   overflow: hidden;
-  text-overflow: ellipsis;  /* 말줄임 적용 */
+  text-overflow: ellipsis; /* 말줄임 적용 */
   line-clamp: 2;
   /* background-color: #614c5c; */
-
 }
-
-
 
 .summary .date,
 .summary .channel {
@@ -72,7 +66,6 @@
   align-items: center;
   place-content: flex-end;
 }
-
 
 .date svg,
 .channel svg {
@@ -111,12 +104,13 @@
 @media (min-width: 768px) {
   .item {
     flex-direction: column;
+    margin: 3rem;
   }
 
   .item iframe {
     width: 100%;
-     height: 70rem;
-  } 
+    height: 70rem;
+  }
 
   .content {
     width: 100%;
@@ -138,9 +132,54 @@
     font-weight: bold;
   }
 
-
   .actions {
     flex-direction: row;
     justify-content: flex-end;
   }
+}
+
+@media (max-width: 767px) {
+  .item .video iframe {
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+
+  .content {
+    width: 100%;
+    padding: 0;
+    text-align: left;
+  }
+
+  .item {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    /* overflow: hidden; */
+    background-color: rgba(51, 7, 75, 0.332);
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.005rem;
+    height: 15rem;
+    width: 18rem;
+    overflow: auto;
+  }
+
+  /* .content h2 {
+    font-size: 0.1rem;
+    /* margin: 1rem 0; */
+    /* text-align: center; */
+    /* font-weight: bold; */
+  /* }  */
+
+  .content {
+    font-size: 0.1rem;
+    margin: 0.1rem 0;
+    text-align: center;
+    /* font-weight: bold; */
+  }
+  
 }

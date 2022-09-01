@@ -3,29 +3,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3rem 6%;
-  height: 6rem;
-  background-color: rgb(94, 13, 139, 1.0);
+  padding: 1rem 6%;
+  height: 1rem;
+  background-color: rgb(94, 13, 139, 1);
 }
 
 .button {
   border-radius: 8px;
-  background-color: rgb(94, 13, 139, 1.0);
+  background-color: rgb(94, 13, 139, 1);
   border: 0;
   outline: 0;
 }
 
-.button:focus{
+.button:focus {
   background-color: rgb(144, 107, 164);
 }
 
-.button:hover{
+.button:hover {
   background-color: rgb(144, 107, 164);
   cursor: pointer;
 }
 
-
 .button h1 {
+  font-size: 0.1rem;
   color: #ffffff;
 }
 
@@ -33,10 +33,8 @@
   color: #171717;
 } */
 
-
-
 .logo {
-  font-size: 1.5rem;
+  font-size: 0.7rem;
   color: rgb(255, 255, 255);
   font-family: "Fira", sans-serif;
   height: 100%;
@@ -44,6 +42,7 @@
   justify-content: center;
   align-items: center;
   color: #cf98df;
+  font-weight: bolder;
 }
 
 .logo a {
@@ -61,7 +60,17 @@
   color: rgb(113, 167, 213);
 }
 
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 6%;
+    height: 1rem;
+    background-color: rgb(94, 13, 139, 1);
+  }
+
   .logo {
     font-weight: bolder;
     font-size: 3rem;
@@ -70,4 +79,9 @@
   .navigation a {
     font-size: 1.5rem;
   }
-} */
+
+  .button h1 {
+    font-size: 2rem;
+    color: #ffffff;
+  }
+}
