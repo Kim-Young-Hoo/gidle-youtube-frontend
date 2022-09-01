@@ -28,10 +28,10 @@ h6 {
   padding: 0;
 } */
 
-.center {
+/* .center {
   margin: auto;
   text-align: center;
-}
+} */
 
 
 ul {
@@ -44,7 +44,8 @@ ul {
 .video-ul {
   width: 100%;
   /* max-width: 80rem; */
-  /* margin: 2rem; */
+  margin: 3rem;
+  margin-left: 13rem;
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;

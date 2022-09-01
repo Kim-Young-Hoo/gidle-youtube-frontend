@@ -5,6 +5,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
 import { getCookies, setCookies, removeCookies } from "cookies-next";
 import axios from "axios";
+import useLocalStorage from "use-local-storage";
 
 function HomePage(props) {
   const [data, setData] = useState([]);
@@ -12,7 +13,10 @@ function HomePage(props) {
   const [pageNumber, setPageNumber] = useState(0);
   const router = useRouter();
   const observer = useRef();
-  console.log(getCookies().loggedIn)
+  const [scrollValue, setScrollValue] = useLocalStorage(0);
+
+
+
 
   if (!data) {
     return <p>Loading...</p>;
@@ -20,9 +24,9 @@ function HomePage(props) {
 
   useEffect(() => {
     if (data) {
-      if (props.pageNumber === 0) {
-        setData([]);
-      }
+      // if (props.pageNumber === 0) {
+      //   setData([]);
+      // }
 
       setData((prevVideos) => {
         return [...new Set([...prevVideos, ...props.data])];
@@ -39,9 +43,10 @@ function HomePage(props) {
     const path = router.pathname;
     const query = router.query;
     query.pageNumber = parseInt(pageNumber, 10) + 1;
+    console.log(query)
     router.push(
       {
-        pathname: "/",
+        pathname: path,
         query: query,
       },
       "/",
@@ -62,11 +67,13 @@ function HomePage(props) {
     [hasMore, handlePagination]
   );
 
+
   return (
     <ul className="video-ul">
       {data.map((video, index) => {
         return (
           <div
+            // onClick={handleScrollValue}
             key={video.id}
             ref={data.length === index + 1 ? lastElementRef : null}
           >
@@ -88,9 +95,7 @@ function HomePage(props) {
 }
 
 export async function getServerSideProps(query) {
-  // console.log(query)
   const pageNumber = query.query.pageNumber || 0;
-  // console.log(pageNumber);
 
   const response = await axios({
     url: "https://gidleyoutubecollections.ml/api/videos/",
@@ -102,7 +107,6 @@ export async function getServerSideProps(query) {
     },
   });
   const data = await response.data;
-  // console.log(data);
 
   return {
     props: {
