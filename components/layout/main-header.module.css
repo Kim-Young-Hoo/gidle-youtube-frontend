@@ -61,7 +61,7 @@
   color: rgb(113, 167, 213);
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .logo {
     font-weight: bolder;
     font-size: 3rem;
@@ -70,4 +70,4 @@
   .navigation a {
     font-size: 1.5rem;
   }
-}
+} */
