@@ -1,10 +1,12 @@
 import { Fragment } from "react";
+import FilterNavigation from "./filter-navigation";
 import MainHeader from "./main-header";
 import SubNavigation from "./sub-navigation";
+import Main from "./main";
 
 function Layout(props) {
   const songFilters = [
-    { name: "데뷔 전", id: 13},
+    { name: "데뷔 전", id: 13 },
     { name: "LATATA", id: 1 },
     { name: "한(一)", id: 2 },
     { name: "Senroita", id: 3 },
@@ -18,11 +20,13 @@ function Layout(props) {
     { name: "TOMBOY", id: 11 },
   ];
 
+
   return (
     <Fragment>
       <MainHeader></MainHeader>
       <SubNavigation data={songFilters}></SubNavigation>
-      <main>{props.children}</main>
+      {/* <FilterNavigation data={channelFilters} handleFilters={(filters) => handleFilters(filters, "filters")}></FilterNavigation> */}
+      <Main data={props.children}></Main>
     </Fragment>
   );
 }

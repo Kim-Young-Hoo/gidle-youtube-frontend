@@ -1,6 +1,7 @@
 import Link from "next/link";
 import classes from "./sub-navigation.module.css";
 
+
 function SubNavigation(props) {
   const data = props.data;
 

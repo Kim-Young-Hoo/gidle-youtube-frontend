@@ -12,7 +12,7 @@
 }
 
 .item .video {
-  height: 38rem;
+  height: 35rem;
   width: 100%;
 }
 
@@ -104,7 +104,7 @@
 @media (min-width: 768px) {
   .item {
     flex-direction: column;
-    margin: 3rem;
+    margin: 2rem 6.5rem;
   }
 
   .item iframe {
@@ -171,8 +171,8 @@
   /* .content h2 {
     font-size: 0.1rem;
     /* margin: 1rem 0; */
-    /* text-align: center; */
-    /* font-weight: bold; */
+  /* text-align: center; */
+  /* font-weight: bold; */
   /* }  */
 
   .content {
@@ -181,5 +181,4 @@
     text-align: center;
     /* font-weight: bold; */
   }
-  
 }

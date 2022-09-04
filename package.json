@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "antd": "^4.22.8",
     "axios": "^0.27.2",
     "cookies-next": "^2.1.1",
     "next": "10.0.6",

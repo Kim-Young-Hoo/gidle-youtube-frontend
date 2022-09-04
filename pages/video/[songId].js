@@ -1,9 +1,9 @@
-// import { getAllVideo, getFeaturedVideo } from "../../helpers/api-util";
-import VideoList from "../../components/video/video-list";
-import { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
 import VideoItem from "../../components/video/video-item";
 import axios from "axios";
+import FilterNavigation from "../../components/layout/filter-navigation";
+
 
 function SongFilterPage(props) {
   const [data, setData] = useState([]);
@@ -34,12 +34,13 @@ function SongFilterPage(props) {
     }
   }, [props.data]);
 
-  const handlePagination = (pageNumber) => {
+  const handlePagination = (pageNumber, filters) => {
     const path = router.pathname;
     console.log(props);
     const query = router.query;
-    // console.log(pageNumber);
     query.pageNumber = parseInt(pageNumber, 10) + 1;
+    query.filters = filters;
+
     router.push(
       {
         pathname: "/video/" + props.songId,
@@ -55,7 +56,7 @@ function SongFilterPage(props) {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          handlePagination(props.pageNumber);
+          handlePagination(props.pageNumber, props.queryFilters);
         }
       });
       if (node) observer.current.observe(node);
@@ -63,39 +64,54 @@ function SongFilterPage(props) {
     [hasMore, handlePagination]
   );
 
+  function handleFilters(filter) {
+    const filterString = filter.join(",").toString()
+    setData([])
+    handlePagination(-1, filterString);
+  }
+
+
   return (
-    <ul className="video-ul">
-      {data.map((video, index) => {
-        return (
-          <div
-            key={video.id}
-            ref={data.length === index + 1 ? lastElementRef : null}
-          >
-            <VideoItem
+    <React.Fragment>
+      <FilterNavigation
+        handleFilter={(filters) => handleFilters(filters)}
+        checkedFilters={props.queryFilters}
+      ></FilterNavigation>
+      <ul className="video-ul">
+        {data.map((video, index) => {
+          return (
+            <div
               key={video.id}
-              id={video.id}
-              url={video.url}
-              title={video.title}
-              featured={video.featured}
-              is_shorts={video.is_shorts}
-              channel_name={video.channel_name}
-              upload_date={video.upload_date}
-            />
-          </div>
-        );
-      })}
-    </ul>
+              ref={data.length === index + 1 ? lastElementRef : null}
+            >
+              <VideoItem
+                key={video.id}
+                id={video.id}
+                url={video.url}
+                title={video.title}
+                featured={video.featured}
+                is_shorts={video.is_shorts}
+                channel_name={video.channel_name}
+                upload_date={video.upload_date}
+              />
+            </div>
+          );
+        })}
+      </ul>
+    </React.Fragment>
   );
 }
 
 export async function getServerSideProps(query) {
   const pageNumber = query.query.pageNumber || 0;
   const songId = query.query.songId;
+  const queryFilters = query.query.filters || '1,2,3,4,5,6';
+  console.log("??", query.query.filters)
 
   const response = await axios({
     url: "https://gidleyoutubecollections.ml/api/videos/" + songId,
     method: "GET",
-    params: { page_number: pageNumber, limit: 6 },
+    params: { page_number: pageNumber, limit: 6, video_filter: queryFilters },
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + `${process.env.API_KEY}`,
@@ -110,6 +126,7 @@ export async function getServerSideProps(query) {
       songId: songId,
       pageNumber: pageNumber,
       lastPageNumber: data.last_page,
+      queryFilters: queryFilters,
     },
   };
 }
