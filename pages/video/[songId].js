@@ -90,6 +90,7 @@ function SongFilterPage(props) {
                 url={video.url}
                 title={video.title}
                 featured={video.featured}
+                thumbnail_url={video.thumbnail_url}
                 is_shorts={video.is_shorts}
                 channel_name={video.channel_name}
                 upload_date={video.upload_date}

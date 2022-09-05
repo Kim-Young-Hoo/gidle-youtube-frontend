@@ -90,6 +90,7 @@ function HomePage(props) {
                 key={video.id}
                 id={video.id}
                 url={video.url}
+                thumbnail_url={video.thumbnail_url}
                 title={video.title}
                 featured={video.featured}
                 is_shorts={video.is_shorts}

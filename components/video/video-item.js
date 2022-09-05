@@ -2,21 +2,35 @@ import classes from "./video-item.module.css";
 import DateIcon from "../icons/date-icon";
 import AddressIcon from "../icons/address-icon";
 import { getCookies, setCookies, removeCookies } from "cookies-next";
+import React, { useState } from "react";
 import axios from "axios";
 
-const useLocalStorage = (storageKey, fallbackState) => {
-  const [value, setValue] = useState(
-    JSON.parse(localStorage.getItem(storageKey)) ?? fallbackState
-  );
-
-  useEffect(() => {
-    localStorage.setItem(storageKey, JSON.stringify(value));
-  }, [value, storageKey]);
-
-  return [value, setValue];
-};
-
 function VideoItem(props) {
+  const [showVideo, setShowVideo] = useState(false);
+
+  function videoFunction(url) {
+    return (
+      <iframe
+        title="YouTube video player"
+        src={`${url}?autoplay=1&rel=0&autohide=1&modestbranding=1&`}
+        frameBorder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; autoplay;"
+        allowFullScreen
+        loading="lazy"
+        width="100%"
+      ></iframe>
+    );
+  }
+
+  function imageFunction(url, altUrl) {
+    return (
+      <div>
+        <div className={classes.play}></div>
+        <img src={url} width="100%" alt={altUrl}></img>
+      </div>
+    );
+  }
+
   const humanReadableDate = new Date(props.upload_date).toLocaleDateString(
     "kr",
     {
@@ -25,7 +39,6 @@ function VideoItem(props) {
       year: "numeric",
     }
   );
-
 
   function handleDeleteClick() {
     axios({
@@ -47,34 +60,41 @@ function VideoItem(props) {
       });
   }
 
-  function hello() {
-    console.log("hellow orold");
+  function changeComponent() {
+    setShowVideo(true);
   }
 
   return (
-    <li className={classes.item}>
+    <li key={props.id} className={classes.item}>
       {getCookies().loggedIn === "true" && (
         <button className={classes.visible} onClick={handleDeleteClick}>
           <h2>삭제하기</h2>
         </button>
       )}
-      <div className={classes.video}>
-        <iframe
-          onClick={hello}
-          title="YouTube video player"
-          src={`${props.url}?rel=0&showinfo=0&autohide=1`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-          allowFullScreen
-          // loading="lazy"
-        ></iframe>
-      </div>
+
       <div className={classes.content}>
         <div className={classes.summary}>
-          {/* <div className={classes.title}>
-            <h2>{props.title}</h2>
+          <div onClick={changeComponent} className={classes.video}>
+            {showVideo === true
+              ? videoFunction(props.url)
+              : imageFunction(props.thumbnail_url)}
           </div>
-          <hr></hr> */}
+          {/* <div className={classes.video}>
+            <iframe
+              onClick={hello}
+              title="YouTube video player"
+              src={`${props.url}?rel=0&autohide=1&modestbranding=1&controls=0`}
+              frameBorder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope;"
+              allowFullScreen
+              // loading="lazy"
+            ></iframe>
+          </div> */}
+
+          <div className={classes.title}>
+            <h3>{props.title}</h3>
+          </div>
+          <hr></hr>
           <div className={classes.date}>
             <DateIcon />
             <time>{humanReadableDate}</time>
